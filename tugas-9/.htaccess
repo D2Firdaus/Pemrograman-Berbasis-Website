@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteBase /pemrograman-berbasis-website/tugas-9/
+
+# Abaikan file/folder yang memang ada
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Auth
+RewriteRule ^login$           controllers/AuthController.php?action=login   [QSA,L]
+RewriteRule ^logout$          controllers/AuthController.php?action=logout  [QSA,L]
+RewriteRule ^login/proses$    controllers/AuthController.php?action=proses  [QSA,L]
+
+# Buku
+RewriteRule ^buku$            controllers/BukuController.php?action=daftar  [QSA,L]
+RewriteRule ^buku/tambah$     controllers/BukuController.php?action=tambah  [QSA,L]
+RewriteRule ^buku/edit$       controllers/BukuController.php?action=edit    [QSA,L]
+RewriteRule ^buku/hapus$      controllers/BukuController.php?action=hapus   [QSA,L]
+
+# Pesanan
+RewriteRule ^pesanan$         controllers/PesananController.php?action=lihat [QSA,L]
+RewriteRule ^pesanan/buat$    controllers/PesananController.php?action=buat  [QSA,L]
+
+# Root
+RewriteRule ^$                controllers/PesananController.php?action=lihat [QSA,L]
